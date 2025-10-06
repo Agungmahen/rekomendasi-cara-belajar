@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agung Mahendra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', 'Poppins', sans-serif;
+        }
+        
+        .futuristic-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+            position: relative;
+        }
+        
+        .futuristic-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(14, 165, 233, 0.9));
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(59, 130, 246, 0.1);
+        }
+        
+        .btn-futuristic {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-futuristic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-futuristic:hover::before {
+            left: 100%;
+        }
+        
+        .btn-futuristic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.8);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .typing-effect {
+            border-right: 2px solid #3b82f6;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #3b82f6; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .section-padding {
+            padding: 120px 0;
+        }
+        
+        .icon-glow {
+            transition: all 0.3s ease;
+        }
+        
+        .icon-glow:hover {
+            color: #3b82f6;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+            transform: scale(1.1);
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass-card">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="text-2xl font-bold neon-text">
+                    <i class="fas fa-cube mr-2"></i>
+                    AGUNG MAHENDRA
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#beranda" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Beranda</a>
+                    <a href="#layanan" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Layanan</a>
+                    <a href="#portofolio" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Portofolio</a>
+                    <a href="#testimoni" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Testimoni</a>
+                    <a href="#kontak" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Kontak</a>
+                </div>
+                <button class="md:hidden text-gray-300 hover:text-blue-400">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="futuristic-bg min-h-screen flex items-center relative overflow-hidden grid-pattern">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            <div class="fade-in-up">
+                <div class="floating-animation mb-8">
+                    <div class="w-32 h-32 mx-auto bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center neon-glow">
+                        <i class="fas fa-rocket text-4xl text-white"></i>
+                    </div>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-bold mb-8 neon-text">
+                    AGUNG
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                        MAHENDRA
+                    </span>
+                </h1>
+                <p class="text-2xl md:text-3xl mb-6 typing-effect inline-block font-light">
+                    Solusi Digital Modern untuk kalian semua
+                </p>
+                <p class="text-lg md:text-xl mb-12 max-w-4xl mx-auto text-gray-300 leading-relaxed">
+                    Transformasi digital yang revolusioner untuk mengoptimalkan operasional perusahaan Anda dengan teknologi terdepan di bidang Informatika, Web Development, Mobile Apps, UI/UX Design, dan Digital Education
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button class="btn-futuristic text-white px-10 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center">
+                        <i class="fas fa-play mr-3"></i>
+                        Mulai Konsultasi
+                    </button>
+                    <button class="glass-card text-blue-400 px-10 py-4 rounded-full font-semibold text-lg border-blue-400 hover:bg-blue-400 hover:text-white transition-all inline-flex items-center justify-center">
+                        <i class="fas fa-download mr-3"></i>
+                        Download Portfolio
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-4 h-4 bg-blue-400 rounded-full opacity-60 floating-animation" style="animation-delay: -2s;"></div>
+        <div class="absolute top-40 right-20 w-6 h-6 bg-cyan-400 rounded-full opacity-40 floating-animation" style="animation-delay: -4s;"></div>
+        <div class="absolute bottom-40 left-20 w-3 h-3 bg-blue-500 rounded-full opacity-50 floating-animation" style="animation-delay: -1s;"></div>
+        <div class="absolute bottom-20 right-10 w-5 h-5 bg-cyan-300 rounded-full opacity-30 floating-animation" style="animation-delay: -3s;"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="layanan" class="section-padding bg-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-6 neon-text">Layanan Profesional</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Solusi teknologi komprehensif yang dirancang khusus untuk kebutuhan HRD dan operasional perusahaan modern
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card p-8 rounded-2xl relative z-10">
+                    <div class="icon-glow text-6xl text-blue-400 mb-8 text-center">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Web Development</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Sistem web enterprise, portal HRD, dan aplikasi manajemen karyawan dengan teknologi terdepan
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Html</span>
+                        <span class="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Php</span>
+                        <span class="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Laravel</span>
+                    </div>
+                </div>
+                
+                <div class="service-card p-8 rounded-2xl relative z-10">
+                    <div class="icon-glow text-6xl text-cyan-400 mb-8 text-center">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Mobile Apps</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Aplikasi mobile untuk absensi, payroll, dan komunikasi internal yang user-friendly dan secure
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Flutter</span>
+                        <span class="inline-block bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Dart</span>
+                        <span class="inline-block bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">iOS/Android</span>
+                    </div>
+                </div>
+                
+                <div class="service-card p-8 rounded-2xl relative z-10">
+                    <div class="icon-glow text-6xl text-purple-400 mb-8 text-center">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">UI/UX Design</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Desain interface yang intuitif dan pengalaman pengguna yang optimal untuk sistem enterprise
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Figma</span>
+                        <span class="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Adobe XD</span>
+                        <span class="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Prototyping</span>
+                    </div>
+                </div>
+                
+                <div class="service-card p-8 rounded-2xl relative z-10">
+                    <div class="icon-glow text-6xl text-green-400 mb-8 text-center">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Sistem Informasi</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        HRIS, ERP, dan sistem manajemen data terintegrasi untuk efisiensi operasional maksimal
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">PostgreSQL</span>
+                        <span class="inline-block bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">MongoDB</span>
+                        <span class="inline-block bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Analytics</span>
+                    </div>
+                </div>
+                
+                <div class="service-card p-8 rounded-2xl relative z-10">
+                    <div class="icon-glow text-6xl text-orange-400 mb-8 text-center">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Digital Learning</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Platform e-learning dan training digital untuk pengembangan SDM perusahaan
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">LMS</span>
+                        <span class="inline-block bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Gamification</span>
+                        <span class="inline-block bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Assessment</span>
+                    </div>
+                </div>
+                
+                <div class="service-card p-8 rounded-2xl relative z-10">
+                    <div class="icon-glow text-6xl text-red-400 mb-8 text-center">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Cyber Security</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Audit keamanan, implementasi security protocols, dan perlindungan data perusahaan
+                    </p>
+                    <div class="mt-6 text-center">
+                        <span class="inline-block bg-red-500/20 text-red-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Penetration Test</span>
+                        <span class="inline-block bg-red-500/20 text-red-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Compliance</span>
+                        <span class="inline-block bg-red-500/20 text-red-300 px-3 py-1 rounded-full text-sm mr-2 mb-2">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portofolio" class="section-padding futuristic-bg relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-6 neon-text">Portfolio Unggulan</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Proyek-proyek terpilih yang menunjukkan keunggulan dalam menghadirkan solusi digital enterprise
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="portfolio-item h-80">
+                    <div class="h-full bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
+                        <i class="fas fa-users text-white text-6xl"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white mb-3">HRIS Enterprise</h3>
+                        <p class="text-white/90 text-center mb-6 px-4">
+                            Sistem manajemen SDM terintegrasi untuk perusahaan multinasional dengan 5000+ karyawan
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item h-80">
+                    <div class="h-full bg-gradient-to-br from-green-600 to-teal-700 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-6xl"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white mb-3">Analytics Dashboard</h3>
+                        <p class="text-white/90 text-center mb-6 px-4">
+                            Dashboard real-time untuk monitoring KPI dan performance metrics perusahaan
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item h-80">
+                    <div class="h-full bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white mb-3">Mobile Workforce</h3>
+                        <p class="text-white/90 text-center mb-6 px-4">
+                            Aplikasi mobile untuk absensi, timesheet, dan komunikasi tim remote
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item h-80">
+                    <div class="h-full bg-gradient-to-br from-orange-600 to-red-700 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-6xl"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white mb-3">Learning Platform</h3>
+                        <p class="text-white/90 text-center mb-6 px-4">
+                            Platform e-learning corporate dengan AI-powered personalization
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item h-80">
+                    <div class="h-full bg-gradient-to-br from-indigo-600 to-blue-700 flex items-center justify-center">
+                        <i class="fas fa-cogs text-white text-6xl"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white mb-3">Automation Suite</h3>
+                        <p class="text-white/90 text-center mb-6 px-4">
+                            Suite otomasi proses bisnis untuk efisiensi operasional maksimal
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item h-80">
+                    <div class="h-full bg-gradient-to-br from-teal-600 to-cyan-700 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white mb-3">Security Framework</h3>
+                        <p class="text-white/90 text-center mb-6 px-4">
+                            Framework keamanan enterprise dengan multi-layer protection
+                        </p>
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimoni" class="section-padding bg-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-6 neon-text">Testimoni Klien</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Kepercayaan dan kepuasan klien adalah fondasi kesuksesan setiap proyek yang kami kerjakan
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center mr-4 neon-glow">
+                            <i class="fas fa-user text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-white">Sarah Wijaya</h4>
+                            <p class="text-gray-400">HRD Director, PT Teknologi Maju</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">
+                        "Implementasi HRIS dari Digital Solutions Pro mengubah total cara kami mengelola SDM. Efisiensi meningkat 300% dan employee satisfaction naik signifikan."
+                    </p>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <i class="fas fa-calendar mr-2"></i>
+                        Project selesai dalam 3 bulan
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-400 rounded-full flex items-center justify-center mr-4 neon-glow">
+                            <i class="fas fa-user text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-white">Budi Santoso</h4>
+                            <p class="text-gray-400">CEO, Digital Innovation Corp</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">
+                        "Tim yang sangat profesional dengan expertise luar biasa. Dashboard analytics yang mereka buat memberikan insights bisnis yang game-changing."
+                    </p>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <i class="fas fa-calendar mr-2"></i>
+                        ROI 250% dalam 6 bulan
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center mr-4 neon-glow">
+                            <i class="fas fa-user text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-white">Lisa Pratiwi</h4>
+                            <p class="text-gray-400">CTO, Future Systems Ltd</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-6 leading-relaxed">
+                        "Solusi mobile workforce mereka revolusioner. Produktivitas tim remote kami meningkat drastis dengan tools yang user-friendly dan powerful."
+                    </p>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <i class="fas fa-calendar mr-2"></i>
+                        Produktivitas +400%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="section-padding futuristic-bg relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-6 neon-text">Mari Berkolaborasi</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Wujudkan transformasi digital perusahaan Anda bersama tim expert kami
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 neon-text">Hubungi Kami Sekarang</h3>
+                    <div class="space-y-8">
+                        <div class="flex items-center glass-card p-6 rounded-xl">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center mr-6 neon-glow">
+                                <i class="fas fa-envelope text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-xl text-white">Email Bisnis</p>
+                                <p class="text-gray-300">business@digitalsolutionspro.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center glass-card p-6 rounded-xl">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-400 rounded-full flex items-center justify-center mr-6 neon-glow">
+                                <i class="fas fa-phone text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-xl text-white">Konsultasi Langsung</p>
+                                <p class="text-gray-300">+62 811-2345-6789</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center glass-card p-6 rounded-xl">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full flex items-center justify-center mr-6 neon-glow">
+                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-xl text-white">Kantor Pusat</p>
+                                <p class="text-gray-300">Jakarta Selatan, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h4 class="text-xl font-bold mb-6 text-white">Connect With Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform neon-glow">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="#" class="w-14 h-14 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform neon-glow">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform neon-glow">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="w-14 h-14 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform neon-glow">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-8 text-white">Konsultasi Gratis</h3>
+                    <form class="space-y-6" onsubmit="handleSubmit(event)">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">Nama Lengkap *</label>
+                                <input type="text" required class="form-input w-full px-4 py-4 rounded-lg focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">Email Bisnis *</label>
+                                <input type="email" required class="form-input w-full px-4 py-4 rounded-lg focus:outline-none">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">Perusahaan *</label>
+                                <input type="text" required class="form-input w-full px-4 py-4 rounded-lg focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">Posisi/Jabatan</label>
+                                <input type="text" class="form-input w-full px-4 py-4 rounded-lg focus:outline-none">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-3">Layanan yang Dibutuhkan</label>
+                            <select class="form-input w-full px-4 py-4 rounded-lg focus:outline-none">
+                                <option value="">Pilih layanan...</option>
+                                <option value="web">Web Development</option>
+                                <option value="mobile">Mobile Apps</option>
+                                <option value="design">UI/UX Design</option>
+                                <option value="system">Sistem Informasi</option>
+                                <option value="learning">Digital Learning</option>
+                                <option value="security">Cyber Security</option>
+                                <option value="consultation">Konsultasi IT</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-3">Detail Kebutuhan *</label>
+                            <textarea rows="4" required class="form-input w-full px-4 py-4 rounded-lg focus:outline-none" placeholder="Ceritakan tentang proyek atau kebutuhan digital perusahaan Anda..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-futuristic w-full text-white py-4 rounded-lg font-bold text-lg">
+                            <i class="fas fa-rocket mr-3"></i>
+                            Mulai Konsultasi Gratis
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-700 py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center">
+                <div class="mb-8">
+                    <h3 class="text-3xl font-bold neon-text mb-4">
+                        <i class="fas fa-cube mr-3"></i>
+                        Digital Solutions Pro
+                    </h3>
+                    <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        Transforming businesses through innovative digital solutions. 
+                        Your trusted partner for enterprise technology advancement.
+                    </p>
+                </div>
+                
+                <div class="border-t border-slate-700 pt-8">
+                    <p class="text-gray-500">
+                        © 2024 Digital Solutions Pro. All rights reserved. 
+                        <span class="text-blue-400">Crafted with ❤️ for Indonesian Digital Transformation</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const inputs = event.target.querySelectorAll('input, select, textarea');
+            const name = inputs[0].value;
+            const email = inputs[1].value;
+            const company = inputs[2].value;
+            const service = inputs[4].value;
+            
+            // Show success message with futuristic style
+            const successMessage = `
+                🚀 Konsultasi berhasil dijadwalkan!
+                
+                Halo ${name}, terima kasih telah memilih Digital Solutions Pro.
+                Tim expert kami akan menghubungi Anda di ${email} dalam 24 jam.
+                
+                Perusahaan: ${company}
+                Layanan: ${service || 'Konsultasi umum'}
+                
+                Bersiaplah untuk transformasi digital yang revolusioner! ✨
+            `;
+            
+            alert(successMessage);
+            event.target.reset();
+        }
+
+        // Typing animation for hero tagline
+        const tagline = document.querySelector('.typing-effect');
+        if (tagline) {
+            const text = tagline.textContent;
+            tagline.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    tagline.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 80);
+                }
+            }
+            
+            setTimeout(typeWriter, 2000);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.3s';
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animation
+        document.querySelectorAll('section > div').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-400');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-blue-400');
+                }
+            });
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-animation');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add glow effect on hover for service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(59, 130, 246, 0.4)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9892ebfff3310fad',t:'MTc1OTU2MjQ4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
